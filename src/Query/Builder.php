@@ -922,9 +922,7 @@ class Builder
      */
     protected function paginator(Collection $items, int $total, int $perPage, int $currentPage, array $options): LengthAwarePaginator
     {
-        return new LengthAwarePaginator(...compact(
-            'items', 'total', 'perPage', 'currentPage', 'options'
-        ));
+        return new LengthAwarePaginator($items, $total, $perPage, $currentPage, $options);
     }
 
     /**

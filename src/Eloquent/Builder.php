@@ -64,18 +64,14 @@ class Builder
         'doesntExist',
         'dump',
         'exists',
-        'getBindings',
         'getConnection',
         'getGrammar',
         'insert',
-        'insertGetId',
-        'insertOrIgnore',
-        'insertUsing',
         'max',
         'min',
         'raw',
         'sum',
-        'toSql',
+        'paginate',
     ];
 
     /**

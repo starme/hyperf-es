@@ -4,9 +4,11 @@ namespace Starme\HyperfEs;
 
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\ContainerInterface;
+use Hyperf\Logger\LoggerFactory;
 use Hyperf\Utils\Arr;
 use InvalidArgumentException;
 use Hyperf\Di\Annotation\Inject;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 class ConnectionResolver implements ConnectionResolverInterface
 {

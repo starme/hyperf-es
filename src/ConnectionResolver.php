@@ -149,9 +149,10 @@ class ConnectionResolver implements ConnectionResolverInterface
 
         $connection = new Connection(
             $config,
-            $this->app['log']->channel($config['logger'])
+            $this->app->make(LoggerFactory::class)->get($config['logger'])
         );
-        return $connection->setEvents($this->app['events']);
+
+        return $connection->setEvents($this->app->make(EventDispatcherInterface::class));
     }
 
     /**

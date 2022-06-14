@@ -35,7 +35,7 @@ class ConnectionResolver implements ConnectionResolverInterface
      * Get a database connection instance.
      *
      * @param  string|null  $name
-     * @return \Starme\Elasticsearch\ConnectionInterface
+     * @return \Starme\HyperfEs\ConnectionInterface
      */
     public function connection($name = null): ConnectionInterface
     {
@@ -54,7 +54,7 @@ class ConnectionResolver implements ConnectionResolverInterface
      * Add a connection to the resolver.
      *
      * @param string $name
-     * @param \Starme\Elasticsearch\ConnectionInterface $connection
+     * @param \Starme\HyperfEs\ConnectionInterface $connection
      * @return void
      */
     public function addConnection(string $name, ConnectionInterface $connection)
@@ -90,7 +90,7 @@ class ConnectionResolver implements ConnectionResolverInterface
      * Reconnect to the given database.
      *
      * @param  string|null  $name
-     * @return \Starme\Elasticsearch\ConnectionInterface
+     * @return \Starme\HyperfEs\ConnectionInterface
      */
     public function reconnect($name = null): ConnectionInterface
     {
@@ -107,7 +107,7 @@ class ConnectionResolver implements ConnectionResolverInterface
      * Refresh the PDO connections on a given connection.
      *
      * @param string $name
-     * @return \Starme\Elasticsearch\Connection
+     * @return \Starme\HyperfEs\Connection
      */
     protected function refreshConnections(string $name): Connection
     {
@@ -141,7 +141,7 @@ class ConnectionResolver implements ConnectionResolverInterface
      * Make the database connection instance.
      *
      * @param string $name
-     * @return \Starme\Elasticsearch\Connection
+     * @return \Starme\HyperfEs\Connection
      */
     protected function makeConnection(string $name): Connection
     {
@@ -176,15 +176,15 @@ class ConnectionResolver implements ConnectionResolverInterface
             throw new InvalidArgumentException("Database connection [{$name}] not configured.");
         }
 
-        return $config;
+        return array_merge($config, compact('name'));
     }
 
     /**
      * Prepare the database connection instance.
      *
-     * @param \Starme\Elasticsearch\Connection $connection
+     * @param \Starme\HyperfEs\Connection $connection
      * @param string $type
-     * @return \Starme\Elasticsearch\Connection
+     * @return \Starme\HyperfEs\Connection
      */
     protected function configure(Connection $connection, string $type): Connection
     {

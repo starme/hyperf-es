@@ -5,7 +5,7 @@ use Starme\HyperfEs\Query\Builder;
 
 trait AggregationGrammar
 {
-    public function compileAggregate(Builder $query, array $aggregate): array
+    public function compileAggregate(Builder $query, array $aggregates): array
     {
         // if (! $aggregate) {
         //     return [];

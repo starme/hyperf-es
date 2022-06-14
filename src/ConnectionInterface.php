@@ -47,14 +47,14 @@ interface ConnectionInterface
      * Get a schema builder instance for the connection.
      *
      * @param $table
-     * @return \Starme\Elasticsearch\Query\Builder
+     * @return \Starme\HyperfEs\Query\Builder
      */
     public function table($table): QueryBuilder;
 
     /**
      * Get a new query builder instance.
      *
-     * @return \Starme\Elasticsearch\Query\Builder
+     * @return \Starme\HyperfEs\Query\Builder
      */
     public function query(): QueryBuilder;
 
@@ -84,5 +84,7 @@ interface ConnectionInterface
 
 
     public function getQueryGrammar(): QueryGrammar;
+
+    public function getName(): string;
 
 }

@@ -68,12 +68,12 @@ class Connection implements ConnectionInterface
     protected $reconnector;
 
     /**
-     * @var \Starme\Elasticsearch\Query\Grammar
+     * @var \Starme\HyperfEs\Query\Grammar
      */
     protected $queryGrammar;
 
     /**
-     * @var \Starme\Elasticsearch\Schema\Grammar
+     * @var \Starme\HyperfEs\Schema\Grammar
      */
     protected $schemaGrammar;
 
@@ -130,7 +130,7 @@ class Connection implements ConnectionInterface
     /**
      * Get the default query grammar instance.
      *
-     * @return \Starme\Elasticsearch\Query\Grammar
+     * @return \Starme\HyperfEs\Query\Grammar
      */
     protected function getDefaultQueryGrammar(): QueryGrammar
     {
@@ -151,7 +151,7 @@ class Connection implements ConnectionInterface
     /**
      * Get the default query grammar instance.
      *
-     * @return \Starme\Elasticsearch\Schema\Grammar
+     * @return \Starme\HyperfEs\Schema\Grammar
      */
     protected function getDefaultSchemaGrammar(): SchemaGrammar
     {
@@ -161,7 +161,7 @@ class Connection implements ConnectionInterface
     /**
      * Get a schema builder instance for the connection.
      *
-     * @return \Starme\ElasticSearch\Schema\Builder
+     * @return \Starme\HyperfEs\Schema\Builder
      */
     public function schema(): SchemaBuilder
     {
@@ -176,7 +176,7 @@ class Connection implements ConnectionInterface
      * Get a schema builder instance for the connection.
      *
      * @param $table
-     * @return \Starme\Elasticsearch\Query\Builder
+     * @return \Starme\HyperfEs\Query\Builder
      */
     public function table($table): QueryBuilder
     {
@@ -186,7 +186,7 @@ class Connection implements ConnectionInterface
     /**
      * Get a new query builder instance.
      *
-     * @return \Starme\Elasticsearch\Query\Builder
+     * @return \Starme\HyperfEs\Query\Builder
      */
     public function query(): QueryBuilder
     {
@@ -207,7 +207,7 @@ class Connection implements ConnectionInterface
     /**
      * Run a count statement against the elasticsearch.
      *
-     * @params array $body
+     * @param array $body
      * @throws \Starme\HyperfEs\Exceptions\QueryException
      */
     public function count(array $params)
@@ -218,7 +218,7 @@ class Connection implements ConnectionInterface
     /**
      * Run an insert statement against the elasticsearch.
      *
-     * @params array $params
+     * @param array $params
      * @throws \Starme\HyperfEs\Exceptions\QueryException
      */
     public function bulk($params, $logEnable=true)
@@ -231,7 +231,7 @@ class Connection implements ConnectionInterface
     /**
      * Run an insert statement against the elasticsearch.
      *
-     * @params array $params
+     * @param array $params
      * @throws \Starme\HyperfEs\Exceptions\QueryException
      */
     public function insert($params, $logEnable=true)
@@ -244,7 +244,7 @@ class Connection implements ConnectionInterface
     /**
      * Run an update statement against the elasticsearch.
      *
-     * @params array $params
+     * @param array $params
      * @throws \Starme\HyperfEs\Exceptions\QueryException
      */
     public function update($params, $by_query=false, $logEnable=true)
@@ -264,7 +264,7 @@ class Connection implements ConnectionInterface
     /**
      * Run an delete statement against the elasticsearch.
      *
-     * @params array $params
+     * @param array $params
      * @throws \Starme\HyperfEs\Exceptions\QueryException
      */
     public function delete($params, $logEnable=true)
@@ -277,8 +277,8 @@ class Connection implements ConnectionInterface
     /**
      * Run an template statement against the elasticsearch.
      *
-     * @params string $type
-     * @params array $params
+     * @param string $type
+     * @param array $params
      * @throws \Starme\HyperfEs\Exceptions\QueryException
      */
     public function index(string $type, array $params)
@@ -301,8 +301,8 @@ class Connection implements ConnectionInterface
     /**
      * Run an template statement against the elasticsearch.
      *
-     * @params string $type
-     * @params array $params
+     * @param string $type
+     * @param array $params
      * @throws \Starme\HyperfEs\Exceptions\QueryException
      */
     public function alias(string $type, array $params)
@@ -433,16 +433,6 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * Register a database query listener with the connection.
-     */
-    public function listen(Closure $callback)
-    {
-        if (isset($this->events)) {
-            $this->events->listen(Events\QueryExecuted::class, $callback);
-        }
-    }
-
-    /**
      * Get the query grammar used by the connection.
      */
     public function getQueryGrammar(): QueryGrammar
@@ -524,6 +514,11 @@ class Connection implements ConnectionInterface
     public function logging(): bool
     {
         return $this->loggingQueries;
+    }
+
+    public function getName(): string
+    {
+        return $this->config['name'];
     }
 
     public function setClient($client)

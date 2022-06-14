@@ -10,6 +10,7 @@ use Hyperf\Utils\Arr;
 use Hyperf\Utils\Collection;
 use Hyperf\Utils\Contracts\Arrayable;
 use InvalidArgumentException;
+use Starme\HyperfEs\ConnectionInterface;
 
 class Builder
 {

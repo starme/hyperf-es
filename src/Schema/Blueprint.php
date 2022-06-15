@@ -9,6 +9,8 @@ use Hyperf\Utils\Fluent;
 class Blueprint
 {
 
+    use Concerns\Columns;
+
     /**
      * The table the blueprint describes.
      *

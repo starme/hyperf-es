@@ -516,6 +516,19 @@ class Connection implements ConnectionInterface
         return $this->loggingQueries;
     }
 
+    /**
+     * Set the reconnect instance on the connection.
+     *
+     * @param  callable  $reconnector
+     * @return $this
+     */
+    public function setReconnector(callable $reconnector)
+    {
+        $this->reconnector = $reconnector;
+
+        return $this;
+    }
+
     public function getName(): string
     {
         return $this->config['name'];

@@ -34,6 +34,21 @@ class ConnectionResolver implements ConnectionResolverInterface
     protected $default = 'default';
 
     /**
+     * The reconnector instance for the connection.
+     *
+     * @var callable
+     */
+    protected $reconnector;
+
+    public function __construct()
+    {
+
+        $this->reconnector = function ($connection) {
+            $this->reconnect($connection->getName());
+        };
+    }
+
+    /**
      * Get a database connection instance.
      *
      * @param  string|null  $name
@@ -154,7 +169,7 @@ class ConnectionResolver implements ConnectionResolverInterface
             $this->app->make(LoggerFactory::class)->get($config['logger'])
         );
 
-        return $connection->setEvents($this->app->make(EventDispatcherInterface::class));
+        return $connection->setEvents($this->app->make(EventDispatcherInterface::class))->setReconnector($this->reconnector);
     }
 
     /**

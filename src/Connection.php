@@ -5,13 +5,15 @@ use Closure;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use Exception;
+use Hyperf\Di\Annotation\Inject;
+use Hyperf\Guzzle\RingPHP\CoroutineHandler;
 use LogicException;
 use Psr\Log\LoggerInterface;
 use Starme\HyperfEs\Query\Builder as QueryBuilder;
 use Starme\HyperfEs\Query\Grammar as QueryGrammar;
 use Starme\HyperfEs\Schema\Builder as SchemaBuilder;
 use Starme\HyperfEs\Schema\Grammar as SchemaGrammar;
-use Hyperf\Di\Annotation\Inject;
+use Swoole\Coroutine;
 
 class Connection implements ConnectionInterface
 {

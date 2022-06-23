@@ -108,8 +108,8 @@ class Connection implements ConnectionInterface
         $builder = ClientBuilder::create();
         $builder->setHosts($this->config["servers"]);
 
-        if (! empty($this->config['handler'])) {
-            $builder->setHandler($this->config['handler']);
+         if (Coroutine::getCid() > 0) {
+            $builder->setHandler(new CoroutineHandler());
         }
 
         $builder->setLogger($this->logger);

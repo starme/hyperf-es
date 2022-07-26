@@ -224,7 +224,7 @@ class Blueprint
      * @param  string|array  $value
      * @return \Hyperf\Utils\Fluent
      */
-    protected function settingCommand(string $type, $value): Fluent
+    public function settingCommand(string $type, $value): Fluent
     {
         return $this->addCommand(
             'setting', compact('type', 'value')

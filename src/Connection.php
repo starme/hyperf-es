@@ -200,6 +200,7 @@ class Connection implements ConnectionInterface
      */
     public function select(array $params=[])
     {
+        $params['preference'] = md5(json_encode($params));
         if (! isset($params['scroll_id'])) {
             return $this->run('search', $params);
         }

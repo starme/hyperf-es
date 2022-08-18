@@ -95,8 +95,14 @@ trait AggregationGrammar
     protected function compileSimpleAgg($type, $columns): array
     {
         foreach ($columns as $column) {
+            $attrs = ['field' => $column];
+            if (is_array($column)) {
+                $attrs = $column;
+                $column = $column['field'];
+            }
+            
             [$column, $alias] = $this->wrap($column, $this->defaultAggAlias($type, $column));
-            $aggs[$alias][$type]['field'] = $column;
+            $aggs[$alias][$type] = $attrs;
         }
         return $aggs;
     }
